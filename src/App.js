@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter,Routes,Route } from "react-router-dom";
+import Navbar from "./components/navbar.js";
+import Home from "./pages/Home.js";
+import Recepies from "./pages/Recepies.js";
+import Settings from "./pages/Settings.js";
+import Ingredients from "./components/Ingredients.js";
 
-function App() {
+const App = ({data}) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <div className="container main">
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='/recipes' element={<Recepies />}/>
+          <Route path='/settings' element={<Settings />}/>
+          <Route path='/recipes/ingredients' element={<Ingredients recipe={data}/>} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
